@@ -1,12 +1,28 @@
 import React from "react";
 import { SafeAreaView, Text, View,FlatList, StyleSheet } from "react-native";
 import music_data from "./music-data.json";
+import SongCard from './components/SongCard';
+
+type Song = {
+  id: string;
+  title: string;
+  artist: string;
+};
 
 function App () {
+  const renderSong = ({ item }: { item: Song }) => <SongCard song={item} />;
+
+  const renderSeperator = () => <View style={styles.seperator} />
+  
   return  (
     <SafeAreaView style={styles.container}>
-      <View>
-        <Text>MUSİC APP</Text>
+      <View style={styles.container}>
+        <FlatList
+         keyExtractor={item => item.id}
+         data={music_data}
+         renderItem={renderSong}
+         ItemSeparatorComponent={renderSeperator}
+        />
       </View>
     </SafeAreaView>
   );
@@ -15,5 +31,9 @@ function App () {
 export default App;
 
 const styles = StyleSheet.create({
-  container: {flex:1},
+  container: {flex:1,},
+  seperator: {
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+  }
 });
