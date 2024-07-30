@@ -8,7 +8,4 @@ export default StyleSheet.create({
         borderRadius:4,
         height: 40,
     },
-    text: {
-        color: 'red',
-    },
 });
